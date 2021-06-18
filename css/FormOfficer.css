@@ -294,7 +294,7 @@ header .cta button:hover {
 }
 
 .container {
-    width: 40%;
+    width: 100%;
     background-color:#cfe2ff;
     border-radius: 8px;
     margin-top: 20px;
