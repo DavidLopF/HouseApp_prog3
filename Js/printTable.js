@@ -19,5 +19,5 @@ http.onreadystatechange = () => {
     }
 }
 
-http.open("GET", 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/list', true)
+http.open("GET", 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/list', true)
 http.send()

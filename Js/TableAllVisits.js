@@ -2,7 +2,7 @@ function init() {
     var h1 = document.getElementById("h1Vet")
     h1.innerHTML = `${"All visits of:" + leerCookie("userName")}`
     var http = new XMLHttpRequest()
-    var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/list'
+    var uri = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/list'
     http.open('GET', uri, true)
     http.onreadystatechange = () => {
         if (http.readyState == 4) {
@@ -42,7 +42,7 @@ function writeTable() {
     var http = new XMLHttpRequest()
 
     if (firstDate == "" && secondDate == "") {
-        var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + petId
+        var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + petId
         http.onreadystatechange = () => {
             if (http.readyState == 4) {
                 var data = JSON.parse(http.responseText)
@@ -64,15 +64,15 @@ function writeTable() {
         http.open('GET', url, true)
         http.send()
     } else {
-        var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + petId +'/' + firstDate + '/' + secondDate
+        var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + petId + '/' + firstDate + '/' + secondDate
         http.onreadystatechange = () => {
             if (http.readyState == 4) {
                 var data = JSON.parse(http.responseText)
 
                 var tbody = document.getElementById("res")
-                tbody.innerHTML= ""
+                tbody.innerHTML = ""
                 for (let i = 0; i < data.length; i++) {
-                    tbody.innerHTML+=`
+                    tbody.innerHTML += `
                      <tr>
                         <td>${data[i].visitId}</td>
                         <td>${data[i].createAt}</td>

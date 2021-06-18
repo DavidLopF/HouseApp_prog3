@@ -11,14 +11,14 @@ function leerCookie(nombre) {
     return valor;
 }
 
-function crearCookie(value){
-    document.cookie = "selectedButton="+value
+function crearCookie(value) {
+    document.cookie = "selectedButton=" + value
 }
 
 function printTable() {
     var finalUsername = leerCookie("userName")
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             var data = JSON.parse(xhr.responseText);
             console.log(data)
@@ -27,11 +27,11 @@ function printTable() {
             for (let i = 0; i < data.length; i++) {
                 console.log(data[i].url)
                 var ruta = data[i].url.split('\\')
-                var imagen = ruta[ruta.length-2]+'/'+ruta[ruta.length-1];
+                var imagen = ruta[ruta.length - 2] + '/' + ruta[ruta.length - 1];
                 cont += data[i].id + "/"
 
                 imagen = imagen.split("/")
-                imagen = imagen[imagen.length-2]+"/"+imagen[imagen.length-1]
+                imagen = imagen[imagen.length - 2] + "/" + imagen[imagen.length - 1]
 
                 tbodyRef.innerHTML += `
                 <tr>
@@ -66,7 +66,7 @@ function printTable() {
 
         }
     }
-    xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/' + finalUsername, true);
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/' + finalUsername, true);
     xhr.send()
 
 }
@@ -83,7 +83,7 @@ function createListener() {
     var boton2 = document.getElementsByClassName("cta1")
     for (let i = 0; i < boton2.length; i++) {
         boton2[i].addEventListener("click", () => {
-            form =document.getElementById("overlayVet")
+            form = document.getElementById("overlayVet")
             form.style.visibility = "visible"
         })
     }
@@ -92,32 +92,32 @@ function createListener() {
 
 printTable();
 
-function selectVet(){
+function selectVet() {
     var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                var data = JSON.parse(xhr.responseText);
-                var tbodyRef = document.getElementById("selectVisits")
-                tbodyRef.innerHTML = ""
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            var data = JSON.parse(xhr.responseText);
+            var tbodyRef = document.getElementById("selectVisits")
+            tbodyRef.innerHTML = ""
 
-                for (let i = 0; i < data.length; i++) {
-                    tbodyRef.innerHTML += `
+            for (let i = 0; i < data.length; i++) {
+                tbodyRef.innerHTML += `
                 <option value="${data[i].userName}">${data[i].name}</option>
                 `
-                }
-
             }
+
         }
-        xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/list', true);
-        xhr.send(null)
+    }
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/list', true);
+    xhr.send(null)
 }
 selectVet()
 
-function tableVisit(){
+function tableVisit() {
     var username = document.getElementById("selectVisits").value
     var type = document.getElementById("selectType").value
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         var data = JSON.parse(xhr.responseText);
         var tbodyRef = document.getElementById("res")
         tbodyRef.innerHTML = ""
@@ -136,7 +136,7 @@ function tableVisit(){
 
 
     }
-    xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/list/'+username+'/'+type, true);
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/list/' + username + '/' + type, true);
     xhr.send()
 
 }

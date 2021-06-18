@@ -31,7 +31,7 @@ xhr.onreadystatechange = () => {
 
     }
 }
-xhr.open("GET", 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/list', true)
+xhr.open("GET", 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/list', true)
 xhr.send()
 
 function createListener(id) {
@@ -62,9 +62,9 @@ function sendDataVisit() {
 
 
     if (micro != "") {
-        if (micro != ""  && description != "") {
-            var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + pet_id + '/' + vet_id + '/'
-                + type + '/' + description + '/' + micro
+        if (micro != "" && description != "") {
+            var uri = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + pet_id + '/' + vet_id + '/' +
+                type + '/' + description + '/' + micro
             http.open("POST", uri, true)
             http.onreadystatechange = () => {
                 if (http.readyState == 4 && http.status == 201) {
@@ -80,8 +80,8 @@ function sendDataVisit() {
         }
     } else {
         if (description != "") {
-            var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + pet_id + '/' + vet_id + '/'
-                + type + '/' + description
+            var uri = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/visit/' + pet_id + '/' + vet_id + '/' +
+                type + '/' + description
             http.open("POST", uri, true)
             http.onreadystatechange = () => {
                 if (http.readyState == 4 && http.status == 201) {
@@ -113,9 +113,3 @@ function leerCookie(nombre) {
     var valor = micookie.substring(igual + 1);
     return valor;
 }
-
-
-
-
-
-

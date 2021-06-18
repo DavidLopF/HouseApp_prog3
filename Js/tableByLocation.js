@@ -1,6 +1,6 @@
-function selectLocation(){
+function selectLocation() {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             var data = JSON.parse(xhr.responseText);
             var cont = ""
@@ -13,16 +13,16 @@ function selectLocation(){
 
         }
     }
-    xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/filter', true);
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/filter', true);
     xhr.send(null)
 
 }
 selectLocation()
 
-function tableLocation(){
+function tableLocation() {
     var neight = document.getElementById("selectLocalidad").value
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             var data = JSON.parse(xhr.responseText);
             var tbodyRef = document.getElementById("res")
@@ -38,19 +38,19 @@ function tableLocation(){
             }
         }
     }
-    xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/oficial/'+neight, true);
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/oficial/' + neight, true);
     xhr.send(null)
 }
 
-function tableCases(){
+function tableCases() {
     var type = document.getElementById("table-container").value
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         var data = JSON.parse(xhr.responseText);
         var tbodyRef = document.getElementById("res")
         tbodyRef.innerHTML = ""
-        for(vari=0;i<data.length;i++){
-             tbodyRef.innerHTML += `
+        for (vari = 0; i < data.length; i++) {
+            tbodyRef.innerHTML += `
              <tr>
             <td>${data[i].pet_id}</td>
             <td>${data[i].type}</td>
@@ -60,16 +60,16 @@ function tableCases(){
 
         }
     }
-    xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/cases/list/'+type, true);
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/cases/list/' + type, true);
     xhr.send(null)
 }
 
-function tablePets(){
+function tablePets() {
     var type = document.getElementById("selectLocalidad").value
     var value = document.getElementById("selectType").value
-    console.log("El tipo es "+type+ " el valor es "+value)
+    console.log("El tipo es " + type + " el valor es " + value)
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             var data = JSON.parse(xhr.responseText);
             var tbodyRef = document.getElementById("res")
@@ -88,17 +88,7 @@ function tablePets(){
             }
         }
     }
-    xhr.open('GET', 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/'+type+'/'+value, true);
+    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/' + type + '/' + value, true);
     xhr.send(null)
 
 }
-
-
-
-
-
-
-
-
-
-

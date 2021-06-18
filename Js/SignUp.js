@@ -6,18 +6,18 @@ function sendDataOwner() {
     var neighborhood = document.getElementById("neighborhood").value
     var passsword = document.getElementById("pwrd").value
     var confirmPassword = document.getElementById("confirm").value
-    var username =document.getElementById("username").value
+    var username = document.getElementById("username").value
 
 
-    if(passsword != confirmPassword){
+    if (passsword != confirmPassword) {
         alert("You do have mistakes in inputs:" +
             "\n-password and confirm password, this inputs should same !!!!")
-    }else{
+    } else {
 
-        var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/' + username + '/' + name + "/" + email + '/' + address +'/'+neighborhood+'/'+passsword
+        var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/' + username + '/' + name + "/" + email + '/' + address + '/' + neighborhood + '/' + passsword
 
         http.open("POST", url, true)
-        http.onreadystatechange = function () {
+        http.onreadystatechange = function() {
 
             if (http.readyState == 4 && http.status == 201) {
                 alert("Owner created successfully")
@@ -27,7 +27,7 @@ function sendDataOwner() {
                     "    -This inputs don´t shoudl null")
             } else if (http.readyState == 4 && http.status != 201 && http.status != 406) {
                 alert(http.responseText)
-            }else if(http.readyState == 4 && http.status != 404){
+            } else if (http.readyState == 4 && http.status != 404) {
                 alert("Not found html ")
             }
         }
@@ -35,39 +35,40 @@ function sendDataOwner() {
 
     }
 }
-function createCaseCookie(id){
-    document.cookie = "type="+id
+
+function createCaseCookie(id) {
+    document.cookie = "type=" + id
 }
 
-function createPetCase(){
+function createPetCase() {
     var seleccion = document.getElementById("case")
     var description = document.getElementById("comments").value
     var id = leerCookie("selectedButton")
     var type
-    if(seleccion == "saab"){
+    if (seleccion == "saab") {
         type = 'Lost'
-    }else if(seleccion == "opel"){
+    } else if (seleccion == "opel") {
         type = 'Deatch'
-    }else {
+    } else {
         type = 'Stole'
     }
-    var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/cases/'
-        + type + '/' + description + "/" + id
+    var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/cases/' +
+        type + '/' + description + "/" + id
     var http = new XMLHttpRequest()
 
     http.open("POST", url, true)
-    http.onreadystatechange = function () {
+    http.onreadystatechange = function() {
 
         if (http.readyState == 4 && http.status == 201) {
             alert("PetCase created successfully")
-            window.location.href = "http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
+            window.location.href = "http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
 
         } else if (http.readyState == 4 && http.status == 406) {
             alert("you should check all input for this form: \n" +
                 "    -This inputs don´t shoudl null")
         } else if (http.readyState == 4 && http.status != 201 && http.status != 406) {
             alert(http.responseText)
-        }else if(http.readyState == 4 && http.status != 404){
+        } else if (http.readyState == 4 && http.status != 404) {
             alert("Not found html ")
         }
     }
@@ -78,42 +79,44 @@ function createPetCase(){
 }
 
 
-function modifyOwner(){
+function modifyOwner() {
     var address = document.getElementById("adress").value
     var neighborhood = document.getElementById("neighborhood").value
     var name = document.getElementById("name").value
     var finalUsername = leerCookie("userName")
-    var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/' + finalUsername + '/' + name + "/"  + address +'/'+neighborhood
+    var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/' + finalUsername + '/' + name + "/" + address + '/' + neighborhood
     var http = new XMLHttpRequest()
     http.open('PUT', url, true)
-    http.onreadystatechange = function () {
+    http.onreadystatechange = function() {
 
         if (http.readyState == 4 && http.status == 201) {
             alert("Owner modify successfully")
-            window.location.href = "http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
+            window.location.href = "http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
         } else if (http.readyState == 4 && http.status == 406) {
             alert("you should check all input for this form: \n" +
                 "    -This inputs don´t shoudl null")
         } else if (http.readyState == 4 && http.status != 201 && http.status != 406) {
             alert(http.responseText)
-        }else if(http.readyState == 4 && http.status != 404){
+        } else if (http.readyState == 4 && http.status != 404) {
             alert("Not found html ")
         }
     }
     http.send()
 
 }
+
 function leerCookie(nombre) {
     var lista = document.cookie.split(";");
     for (i in lista) {
         var busca = lista[i].search(nombre);
-        if (busca > -1) {micookie=lista[i]}
+        if (busca > -1) { micookie = lista[i] }
     }
     var igual = micookie.indexOf("=");
-    var valor = micookie.substring(igual+1);
+    var valor = micookie.substring(igual + 1);
     return valor;
 }
-function uploadPicture(){
+
+function uploadPicture() {
     var fileName = document.getElementById("file").files[0].name
     var microship = document.getElementById("microship").value
     var name = document.getElementById("name").value
@@ -126,14 +129,14 @@ function uploadPicture(){
 
     var form = new FormData(document.getElementById("file2"))
     var http = new XMLHttpRequest()
-    var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/pictures/upload/'
-        + microship + '/' + name + "/" + specie + '/' + race +'/'+size+'/'+sex
-        +  '/' + fileName + '/' + finalUsername
+    var uri = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/pictures/upload/' +
+        microship + '/' + name + "/" + specie + '/' + race + '/' + size + '/' + sex +
+        '/' + fileName + '/' + finalUsername
     http.open("POST", uri, true)
-    http.onreadystatechange = function () {
+    http.onreadystatechange = function() {
         if (http.readyState == 4 && http.status == 201) {
             alert("picture and pet created successfully")
-            window.location.href = "http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
+            window.location.href = "http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
 
         } else if (http.readyState == 4 && http.status == 406) {
             alert("you should check all input for this form: \n" +
@@ -147,7 +150,7 @@ function uploadPicture(){
 }
 
 
-function createPet(){
+function createPet() {
 
     var fileName = document.getElementById("file").files[0].name
     var microship = document.getElementById("microship").value
@@ -160,11 +163,11 @@ function createPet(){
 
 
 
-    var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/'
-        + microship + '/' + name + "/" + specie + '/' + race +'/'+size+'/'+sex
-        +  '/' + fileName + '/' + userOwner
+    var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/' +
+        microship + '/' + name + "/" + specie + '/' + race + '/' + size + '/' + sex +
+        '/' + fileName + '/' + userOwner
     http.open("POST", url, true)
-    http.onreadystatechange = function () {
+    http.onreadystatechange = function() {
 
         if (http.readyState == 4 && http.status == 201) {
             alert("Pet created successfully")
@@ -182,7 +185,7 @@ function createPet(){
 
 }
 
-function modifyPet(){
+function modifyPet() {
     var microship = document.getElementById("microchip").value
     var name = document.getElementById("name").value
     var specie = document.getElementById("specie").value
@@ -191,14 +194,14 @@ function modifyPet(){
     var sex = document.getElementById("sex").value
     var id = leerCookie("selectedButton")
     var http = new XMLHttpRequest()
-    var url = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/'
-        + microship + '/' + name + "/" + specie + '/' + race +'/'+size+'/'+sex+'/'+id
+    var url = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/' +
+        microship + '/' + name + "/" + specie + '/' + race + '/' + size + '/' + sex + '/' + id
     http.open("PUT", url, true)
-    http.onreadystatechange = function () {
+    http.onreadystatechange = function() {
 
-        if (http.readyState == 4 && (http.status == 201||http.status == 202)) {
+        if (http.readyState == 4 && (http.status == 201 || http.status == 202)) {
             alert("Pet modify successfully")
-            window.location.href = "http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
+            window.location.href = "http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/funtionOwner.html"
         } else if (http.readyState == 4 && http.status == 406) {
             alert("you should check all input for this form: \n" +
                 "    -This inputs don´t shoudl null")
@@ -233,7 +236,7 @@ function sendDataOficial() {
         var uri = "http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/oficial/" + userName + '/' + password + '/' + email + '/' + name
 
         http.open("POST", uri, true)
-        http.onreadystatechange = function () {
+        http.onreadystatechange = function() {
 
             if (http.readyState == 4 && http.status == 201) {
                 alert("Oficial created successfully")
@@ -262,11 +265,11 @@ function sendDataVet() {
 
     if (password == check) {
         var http = new XMLHttpRequest()
-        var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/' + userName + '/' + password + "/" + email
-            + '/' + name + '/' + adress + '/' + neighborhood
+        var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/' + userName + '/' + password + "/" + email +
+            '/' + name + '/' + adress + '/' + neighborhood
 
         http.open("POST", uri, true)
-        http.onreadystatechange = function () {
+        http.onreadystatechange = function() {
             if (http.readyState == 4 && http.status == 201) {
                 alert("Vet created successfully")
                 window.location.href = "index.html"
@@ -285,6 +288,3 @@ function sendDataVet() {
             "\n-password and confirm password, this inputs should same !!!!")
     }
 }
-
-
-
