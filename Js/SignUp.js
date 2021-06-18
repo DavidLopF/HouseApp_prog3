@@ -233,7 +233,7 @@ function sendDataOficial() {
             "\n-password and confirm password, this inputs should same !!!!")
     } else {
         var http = new XMLHttpRequest()
-        var uri = "http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/oficial/" + userName + '/' + password + '/' + email + '/' + name
+        var uri = "http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/oficial/" + userName + '/' + password + '/' + email + '/' + name
 
         http.open("POST", uri, true)
         http.onreadystatechange = function() {
@@ -265,7 +265,7 @@ function sendDataVet() {
 
     if (password == check) {
         var http = new XMLHttpRequest()
-        var uri = 'http://localhost:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/' + userName + '/' + password + "/" + email +
+        var uri = 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/vet/' + userName + '/' + password + "/" + email +
             '/' + name + '/' + adress + '/' + neighborhood
 
         http.open("POST", uri, true)

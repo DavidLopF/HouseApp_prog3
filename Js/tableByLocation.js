@@ -60,7 +60,7 @@ function tableCases() {
 
         }
     }
-    xhr.open('GET', 'http://35.206.97.221:8080/Final_proyect_prog-1.0-SNAPSHOT/api/userApp/owners/pets/cases/list/' + type, true);
+    xhr.open('GET', 'c' + type, true);
     xhr.send(null)
 }
 
